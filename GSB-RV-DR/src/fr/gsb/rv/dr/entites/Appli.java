@@ -43,7 +43,7 @@ import javafx.util.Pair;
  *
  * @author etudiant
  */
-public class MainVisiteur extends Application {
+public class Appli extends Application {
     private Label label;
     
     Visiteur un = new Visiteur ("OB001" ,"BOUAICHI","Oumayma" );
@@ -123,25 +123,32 @@ public class MainVisiteur extends Application {
                VueConnexion co = new VueConnexion() ;
                Optional<Pair<String,String>> reponse = co.showAndWait();
                
-               reponse.ifPresent(pair ->  
-               {
-                  
-                    try {
-                        Visiteur vis = seConnecter ( pair.getKey(), pair.getValue());
-                        
-                        if( vis!= null) {
-                        System.out.println("oui");
-                        primaryStage.setTitle (vis.getPrenom() + " " + vis.getNom());
-                    }
-                    } catch (ConnexionException ex) {
-                        Logger.getLogger(MainVisiteur.class.getName()).log(Level.SEVERE, null, ex);
-                        
-                        
-                    }
-                   
-               });
+               
                        
+                   reponse.ifPresent(pair ->
+                   {
+                       
+                       try {
+                           Visiteur vis = seConnecter ( pair.getKey(), pair.getValue());
+                           
+                            if(vis!= null){ 
+                               System.out.println("oui");
+                               primaryStage.setTitle (vis.getPrenom() + " " + vis.getNom());
+                                  
+                               
+                           }
+                           
+                       } catch (ConnexionException ex) {
+                           Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
+                         
+                       
+                               
                        }
+                       
+                       
+                
+                   });
+               }
                  
               });
               
